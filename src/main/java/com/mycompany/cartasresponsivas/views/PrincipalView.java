@@ -2,15 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.cartasresponsivas.login;
+package com.mycompany.cartasresponsivas.views;
 
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -18,13 +20,15 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author desan
  */
-public class Login extends javax.swing.JFrame {
+
+public class PrincipalView extends javax.swing.JFrame {
 
     /**
      * Creates new form Login
      * @throws java.io.IOException
      */
-    public Login() throws IOException {
+    
+    public PrincipalView() throws IOException {
         
         try {
             UIManager.setLookAndFeel(new FlatMaterialLighterIJTheme());
@@ -40,7 +44,7 @@ public class Login extends javax.swing.JFrame {
         
         
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,15 +57,19 @@ public class Login extends javax.swing.JFrame {
 
         bg = new javax.swing.JPanel();
         menu = new javax.swing.JPanel();
+        Logo = new javax.swing.JLabel();
         jButton_CrearPdf = new javax.swing.JButton();
         jButton_ActualizarPdf = new javax.swing.JButton();
         jButton_CrearPdf2 = new javax.swing.JButton();
         header = new javax.swing.JPanel();
         jLabel_Welcome = new javax.swing.JLabel();
         jLabel_Welcome_date = new javax.swing.JLabel();
+        jButtonAbsolutePath = new javax.swing.JButton();
+        jButtonEditedPath = new javax.swing.JButton();
+        jLabelAbsolutePath = new javax.swing.JLabel();
+        jLabelEditedPath = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 500));
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
         bg.setPreferredSize(new java.awt.Dimension(800, 500));
@@ -71,6 +79,12 @@ public class Login extends javax.swing.JFrame {
         menu.setPreferredSize(new java.awt.Dimension(2, 500));
         menu.setLayout(new java.awt.GridBagLayout());
 
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo200.png"))); // NOI18N
+        Logo.setMaximumSize(new java.awt.Dimension(200, 200));
+        Logo.setMinimumSize(new java.awt.Dimension(200, 200));
+        Logo.setPreferredSize(new java.awt.Dimension(200, 200));
+        menu.add(Logo, new java.awt.GridBagConstraints());
+
         jButton_CrearPdf.setBackground(new java.awt.Color(255, 204, 204));
         jButton_CrearPdf.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton_CrearPdf.setForeground(new java.awt.Color(0, 0, 0));
@@ -79,6 +93,7 @@ public class Login extends javax.swing.JFrame {
         jButton_CrearPdf.setBorder(null);
         jButton_CrearPdf.setBorderPainted(false);
         jButton_CrearPdf.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton_CrearPdf.setMaximumSize(new java.awt.Dimension(200, 57));
         jButton_CrearPdf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_CrearPdfActionPerformed(evt);
@@ -171,21 +186,66 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jButtonAbsolutePath.setBackground(new java.awt.Color(255, 153, 153));
+        jButtonAbsolutePath.setForeground(new java.awt.Color(204, 255, 255));
+        jButtonAbsolutePath.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pathIcon.png"))); // NOI18N
+        jButtonAbsolutePath.setText("Ruta pdf base");
+        jButtonAbsolutePath.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAbsolutePathActionPerformed(evt);
+            }
+        });
+
+        jButtonEditedPath.setBackground(new java.awt.Color(255, 153, 153));
+        jButtonEditedPath.setForeground(new java.awt.Color(204, 255, 255));
+        jButtonEditedPath.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pathIcon.png"))); // NOI18N
+        jButtonEditedPath.setText("Ruta de guardado");
+        jButtonEditedPath.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditedPathActionPerformed(evt);
+            }
+        });
+
+        jLabelAbsolutePath.setText("jLabel1");
+
+        jLabelEditedPath.setText("jLabel1");
+
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
         bgLayout.setHorizontalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgLayout.createSequentialGroup()
                 .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(bgLayout.createSequentialGroup()
+                                .addComponent(jButtonEditedPath)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelEditedPath, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(bgLayout.createSequentialGroup()
+                                .addComponent(jButtonAbsolutePath)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabelAbsolutePath, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(bgLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAbsolutePath)
+                    .addComponent(jLabelAbsolutePath))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonEditedPath)
+                    .addComponent(jLabelEditedPath))
+                .addGap(27, 27, 27)
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(305, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -215,6 +275,33 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_CrearPdf2ActionPerformed
 
+    private void jButtonAbsolutePathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbsolutePathActionPerformed
+        // TODO add your handling code here:
+        // Abrir un JFileChooser para seleccionar el PDF plantilla
+        
+        JFileChooser fileChooser = new JFileChooser();
+        int result = fileChooser.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File pdfPlantilla = fileChooser.getSelectedFile();
+            
+            jLabelAbsolutePath.setText(pdfPlantilla.getPath());
+        }
+    }//GEN-LAST:event_jButtonAbsolutePathActionPerformed
+
+    private void jButtonEditedPathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditedPathActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+
+// Seleccionar solo carpetas
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+        int result = fileChooser.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File carpetaSeleccionada = fileChooser.getSelectedFile();
+            jLabelEditedPath.setText(carpetaSeleccionada.getPath());
+           
+        }
+    }//GEN-LAST:event_jButtonEditedPathActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -232,33 +319,39 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrincipalView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrincipalView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrincipalView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrincipalView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
         
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             try {
-                new Login().setVisible(true);
+                new PrincipalView().setVisible(true);
             } catch (IOException ex) {
-                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PrincipalView.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Logo;
     private javax.swing.JPanel bg;
     private javax.swing.JPanel header;
+    private javax.swing.JButton jButtonAbsolutePath;
+    private javax.swing.JButton jButtonEditedPath;
     private javax.swing.JButton jButton_ActualizarPdf;
     private javax.swing.JButton jButton_CrearPdf;
     private javax.swing.JButton jButton_CrearPdf2;
+    private javax.swing.JLabel jLabelAbsolutePath;
+    private javax.swing.JLabel jLabelEditedPath;
     private javax.swing.JLabel jLabel_Welcome;
     private javax.swing.JLabel jLabel_Welcome_date;
     private javax.swing.JPanel menu;
